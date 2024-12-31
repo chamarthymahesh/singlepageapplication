@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const ScrollingInfoSchema = new mongoose.Schema({
   title: {
     type: String,  // This will store the title of the scrolling info
-    required: true,  // Title is required
   },
   info: {
     type: String,  
