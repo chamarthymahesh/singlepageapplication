@@ -3,7 +3,14 @@ const Word = require('../models/Word');
 // Create Word
 exports.createWord = async (req, res) => {
   try {
-    const newWord = new Word(req.body);
+    const { name, description, additionalDescription } = req.body;
+
+    const newWord = new Word({
+      name,
+      description,
+      additionalDescription,  // Save the new field
+    });
+
     await newWord.save();
     res.status(201).json(newWord);
   } catch (error) {
@@ -25,7 +32,13 @@ exports.getWords = async (req, res) => {
 exports.updateWord = async (req, res) => {
   try {
     const wordId = req.params.id;
-    const updatedWord = await Word.findByIdAndUpdate(wordId, req.body, { new: true });
+    const { name, description, additionalDescription } = req.body;
+
+    const updatedWord = await Word.findByIdAndUpdate(wordId, {
+      name,
+      description,
+      additionalDescription,  // Update the new field
+    }, { new: true });
 
     if (!updatedWord) {
       return res.status(404).json({ message: 'Word not found' });
