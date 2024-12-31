@@ -62,8 +62,8 @@ app.use('/api/auth', authRoutes);
 app.use(StoreImage('image','/image'));
 // app.use(SimpleData('data','/data','20mb'));
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+// Ensure the app listens on all network interfaces (0.0.0.0) and the specified port
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
  */
